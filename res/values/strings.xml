@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">moody bird</string>
+    <string name="menu_main_new_game">Play Game</string>
+    <string name="menu_main_high_score">View High Score</string>
+    <string name="menu_main_instructions">View Instructions</string>
+    <string name="menu_main_credit">View Credit</string>
 </resources>
