@@ -8,4 +8,4 @@ moody-bird-reviewed
 3. Use an OptionsMenu.
 4. Use sounds correctly.
 
-**All issues will be addressed by porting from LibGDX custom views to GDK views.**
+**Hopefully, all issues will be addressed by porting from LibGDX custom views to GDK views.**
