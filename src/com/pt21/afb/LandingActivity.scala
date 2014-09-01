@@ -81,7 +81,7 @@ class LandingActivity extends Activity {
     override def onGesture(gesture: Gesture): Boolean = {
       println("onGesture " + gesture.name())
       gesture match {
-          //TODO: get Gesture.LONG_PRESS when tap
+        //TODO: get Gesture.LONG_PRESS when tap
         case Gesture.TAP | Gesture.LONG_PRESS => onTap()
         case _ => false
       }
