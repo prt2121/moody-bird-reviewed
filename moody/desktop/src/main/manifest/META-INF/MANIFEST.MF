@@ -1,2 +1,0 @@
-Main-Class: com.pt21.afb.Main
-

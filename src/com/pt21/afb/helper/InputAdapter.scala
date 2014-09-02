@@ -13,16 +13,27 @@
  * limitations under the License.
  */
 
-package com.pt21.afb
+package com.pt21.afb.helper
 
-import com.badlogic.gdx.backends.lwjgl._
 
-object Main extends App {
-  val cfg = new LwjglApplicationConfiguration
-  cfg.title = "Angry Flappy Bird"
-  cfg.height = 480
-  cfg.width = 320
-  cfg.useGL20 = true
-  cfg.forceExit = false
-  new LwjglApplication(new AngryFlappyBird, cfg)
-}
+
+/**
+ * Created by pt2121 on 6/2/14.
+ */
+/*class InputAdapter(sensor: LinearAcceleration, gestureHandler: GestureHandler, world: GameWorld) {
+
+  def firstButton(action: () => Boolean): Unit = {
+    gestureHandler match {
+      case handler: InputHandler => handler.onTap(action)
+      case _ => sensor.onYJump(action)
+    }
+  }
+
+  def secondButton(action: () => Boolean): Unit = {
+    gestureHandler match {
+      case handler: InputHandler => handler.onTwoFingerTap(action)
+      case _ => gestureHandler.onTap(action)
+    }
+  }
+
+}*/
