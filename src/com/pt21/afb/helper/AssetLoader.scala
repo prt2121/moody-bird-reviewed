@@ -20,7 +20,6 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter
 import com.badlogic.gdx.graphics.g2d.{Animation, BitmapFont, TextureRegion}
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.{Gdx, utils}
-import com.pt21.afb.AngryFlappyBird
 
 /**
  * Created by pt2121 on 5/26/14.
@@ -131,7 +130,7 @@ object AssetLoader {
     report("Game", "setHighScore", "High Score", Some(value.toLong))
   }
 
-  def tracker(t : Tracker):Unit = mTracker = t
+  def tracker(t: Tracker): Unit = mTracker = t
 
   def report(category: String, action: String, label: String, value: Option[Long]): Unit = {
     if (mTracker != null)

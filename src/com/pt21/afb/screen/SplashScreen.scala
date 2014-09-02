@@ -18,7 +18,6 @@ package com.pt21.afb.screen
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.{delay, fadeIn, fadeOut, sequence}
 import com.badlogic.gdx.scenes.scene2d.ui.{Image, Label, Table}
-import com.badlogic.gdx.scenes.scene2d.utils.Align
 import com.badlogic.gdx.scenes.scene2d.{Action, Stage}
 import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.badlogic.gdx.{Gdx, Screen}
@@ -64,9 +63,9 @@ class SplashScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler
     val titleTable = new Table
     //titleTable.setFillParent(true)
     titleTable.setSkin(AssetLoader.skin)
-//    titleTable.row
-//    titleTable.add(" ").spaceTop(70)
-//    titleTable.row
+    //    titleTable.row
+    //    titleTable.add(" ").spaceTop(70)
+    //    titleTable.row
     titleTable.add("Moody")
     titleTable.row
     titleTable.add("Bird")

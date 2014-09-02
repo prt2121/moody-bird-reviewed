@@ -15,7 +15,7 @@
 package com.pt21.afb
 
 import android.app.Activity
-import android.content.{Intent, Context}
+import android.content.{Context, Intent}
 import android.media.AudioManager
 import android.os.Bundle
 import android.view._
@@ -24,8 +24,6 @@ import com.google.android.glass.app.Card
 import com.google.android.glass.media.Sounds
 import com.google.android.glass.touchpad.{Gesture, GestureDetector}
 import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
-
-import com.pt21.afb.MainActivity
 
 /**
  * Created by prt2121 on 8/30/14.

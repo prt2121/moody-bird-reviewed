@@ -15,7 +15,7 @@
 
 package com.pt21.afb
 
-import com.badlogic.gdx.{Game, Gdx, Screen}
+import com.badlogic.gdx.{Game, Gdx}
 import com.pt21.afb.helper.{AssetLoader, GestureHandler, LinearAcceleration, Tracker}
 import com.pt21.afb.screen._
 
@@ -27,7 +27,7 @@ class AngryFlappyBird(val ySensor: LinearAcceleration, val gesture: Option[Gestu
   private var _instructionsScreen2: InstructionsScreen2 = _
   private var _highScoreScreen: HighScoreScreen = _
   private var _creditScreen: CreditScreen = _
-  private var _world:GameWorld = _
+  private var _world: GameWorld = _
   private var _renderer: GameRenderer = _
 
   override def create(): Unit = {
@@ -51,11 +51,18 @@ class AngryFlappyBird(val ySensor: LinearAcceleration, val gesture: Option[Gestu
   }
 
   def gameScreen = _gameScreen
+
   def menuScreen = _menuScreen
+
   def instructionsScreen1 = _instructionsScreen1
+
   def instructionsScreen2 = _instructionsScreen2
+
   def highScoreScreen = _highScoreScreen
+
   def creditScreen = _creditScreen
+
   def world = _world
+
   def renderer = _renderer
 }

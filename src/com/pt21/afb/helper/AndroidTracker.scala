@@ -16,23 +16,24 @@
 package com.pt21.afb.helper
 
 import android.content.Context
-import com.google.analytics.tracking.android.{MapBuilder, EasyTracker}
+import com.google.analytics.tracking.android.{EasyTracker, MapBuilder}
 
 /**
  * Created by pt2121 on 6/25/14.
  */
-class AndroidTracker(val easyTracker : EasyTracker) extends Tracker {
+class AndroidTracker(val easyTracker: EasyTracker) extends Tracker {
   override def send(category: String, action: String, label: String, value: Option[Long]): Unit = {
     easyTracker.send(MapBuilder.createEvent(
       category,
       action,
       label,
-      if(value.isDefined) value.get else null).build())
+      if (value.isDefined) value.get else null).build())
   }
 }
 
 object AndroidTracker {
-  var tracker : AndroidTracker = _
+  var tracker: AndroidTracker = _
+
   def apply(context: Context) = {
     val easyTracker = EasyTracker.getInstance(context)
     tracker = new AndroidTracker(easyTracker)

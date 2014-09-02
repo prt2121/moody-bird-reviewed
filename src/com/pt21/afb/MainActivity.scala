@@ -19,9 +19,8 @@ import android.os.{Build, Bundle}
 import android.view._
 import android.widget.RelativeLayout
 import com.badlogic.gdx.backends.android._
-import com.google.analytics.tracking.android.{EasyTracker, MapBuilder}
 import com.google.android.glass.touchpad.GestureDetector
-import com.pt21.afb.helper.{AndroidTracker, AndroidGestureHandler, AndroidLinearAcceleration}
+import com.pt21.afb.helper.{AndroidGestureHandler, AndroidLinearAcceleration, AndroidTracker}
 
 class MainActivity extends AndroidApplication {
 

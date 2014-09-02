@@ -17,7 +17,7 @@ package com.pt21.afb.screen
 
 import com.badlogic.gdx.Screen
 import com.pt21.afb.helper.{AssetLoader, GestureHandler}
-import com.pt21.afb.{AngryFlappyBird, GameRenderer, GameState, GameWorld}
+import com.pt21.afb.{AngryFlappyBird, GameState}
 
 
 /**
@@ -26,8 +26,8 @@ import com.pt21.afb.{AngryFlappyBird, GameRenderer, GameState, GameWorld}
 class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler]) extends Screen {
 
   private var runTime: Float = _
-//  private var world: GameWorld = _
-//  private var renderer: GameRenderer = _
+  //  private var world: GameWorld = _
+  //  private var renderer: GameRenderer = _
 
   override def render(delta: Float): Unit = {
     runTime = runTime + delta
@@ -44,11 +44,11 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
   override def pause(): Unit = {}
 
   override def show(): Unit = {
-//    println("== show ==")
-//    world = new GameWorld(game)
-//    renderer = new GameRenderer(world)
-//    if(world == null) println("world is null") else println("world is NOT null")
-//    if(renderer == null) println("renderer is null") else println("renderer is NOT null")
+    //    println("== show ==")
+    //    world = new GameWorld(game)
+    //    renderer = new GameRenderer(world)
+    //    if(world == null) println("world is null") else println("world is NOT null")
+    //    if(renderer == null) println("renderer is null") else println("renderer is NOT null")
     gesture.map({ controller =>
       controller.onTap(() => {
         game.world.state() match {
