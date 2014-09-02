@@ -91,7 +91,7 @@ class LandingActivity extends Activity {
     mGestureDetector.exists(_.onMotionEvent(event))
 
   def buildView: View = {
-    new Card(this).setText("Yeah").getView
+    new Card(this).addImage(R.drawable.background).getView
   }
 
   class GestureBaseListener extends GestureDetector.BaseListener {
