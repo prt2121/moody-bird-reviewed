@@ -1,7 +1,21 @@
+/*
+ * Copyright (c) 2014.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.pt21.afb
 
 import android.app.Activity
-import android.content.Context
+import android.content.{Intent, Context}
 import android.media.AudioManager
 import android.os.Bundle
 import android.view._
@@ -10,6 +24,8 @@ import com.google.android.glass.app.Card
 import com.google.android.glass.media.Sounds
 import com.google.android.glass.touchpad.{Gesture, GestureDetector}
 import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
+
+import com.pt21.afb.MainActivity
 
 /**
  * Created by prt2121 on 8/30/14.
@@ -63,7 +79,10 @@ class LandingActivity extends Activity {
   }
 
   override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
-    case R.id.menu_main_new_game => println("New Game"); true
+    case R.id.menu_main_new_game => {
+      startActivity(new Intent(LandingActivity.this, classOf[MainActivity]))
+      true
+    }
     case R.id.menu_main_high_score => println("High Score"); true
     case R.id.menu_main_instructions => println("Instructions"); true
     case R.id.menu_main_credit => println("Credit"); true

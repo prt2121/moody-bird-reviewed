@@ -23,7 +23,7 @@ import com.google.analytics.tracking.android.{EasyTracker, MapBuilder}
 import com.google.android.glass.touchpad.GestureDetector
 import com.pt21.afb.helper.{AndroidTracker, AndroidGestureHandler, AndroidLinearAcceleration}
 
-class Main extends AndroidApplication {
+class MainActivity extends AndroidApplication {
 
   var mGestureDetector: Option[GestureDetector] = _
   var gameView: View = _
