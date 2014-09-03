@@ -76,13 +76,17 @@ class LandingActivity extends Activity {
     true
   }
 
+  //New game, Instructions, View score, View credits
   override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
     case R.id.menu_main_new_game => {
       startActivity(new Intent(LandingActivity.this, classOf[MainActivity]))
       true
     }
     case R.id.menu_main_high_score => println("High Score"); true
-    case R.id.menu_main_instructions => println("Instructions"); true
+    case R.id.menu_main_instructions => {
+      startActivity(new Intent(LandingActivity.this, classOf[InstructionsActivity]))
+      true
+    }
     case R.id.menu_main_credit => println("Credit"); true
     case _ => super.onOptionsItemSelected(item)
   }
@@ -91,7 +95,10 @@ class LandingActivity extends Activity {
     mGestureDetector.exists(_.onMotionEvent(event))
 
   def buildView: View = {
-    new Card(this).addImage(R.drawable.background).getView
+    new Card(this)
+      .setImageLayout(Card.ImageLayout.FULL)
+      .addImage(R.drawable.background)
+      .getView
   }
 
   class GestureBaseListener extends GestureDetector.BaseListener {
