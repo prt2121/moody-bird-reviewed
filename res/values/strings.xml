@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Moody Bird</string>
-    <string name="menu_main_new_game">Play Game</string>
-    <string name="menu_main_high_score">View High Score</string>
+    <string name="menu_main_new_game">New game</string>
     <string name="menu_main_instructions">Instructions</string>
-    <string name="menu_main_credit">View Credit</string>
+    <string name="menu_main_high_score">View score</string>
+    <string name="menu_main_credit">View credits</string>
 </resources>
