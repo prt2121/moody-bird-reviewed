@@ -1,14 +1,10 @@
 package com.pt21.afb
 
 import android.app.Activity
-import android.content.{Context, Intent}
-import android.media.AudioManager
 import android.os.Bundle
 import android.view._
 import android.widget.AdapterView
 import com.google.android.glass.app.Card
-import com.google.android.glass.media.Sounds
-import com.google.android.glass.touchpad.{Gesture, GestureDetector}
 import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
 
 /**
@@ -18,8 +14,6 @@ class InstructionsActivity extends Activity {
 
   private var mScrollView: Option[CardScrollView] = None
   private var mView: List[View] = List[View]()
-  private var mGestureDetector: Option[GestureDetector] = None
-
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
