@@ -20,7 +20,12 @@ class InstructionsActivity extends Activity {
 
     mView = buildViews
 
-    mScrollView = Some(new CardScrollView(this))
+    mScrollView = Some(new CardScrollView(this) {
+      override def dispatchGenericFocusedEvent(event : MotionEvent): Boolean = {
+        super.dispatchGenericFocusedEvent(event)
+        false
+      }
+    })
     mScrollView.map { scrollView =>
       scrollView.setAdapter(new CardScrollAdapter() {
         override def getCount: Int = 2
