@@ -82,7 +82,10 @@ class LandingActivity extends Activity {
       startActivity(new Intent(LandingActivity.this, classOf[MainActivity]))
       true
     }
-    case R.id.menu_main_high_score => println("High Score"); true
+    case R.id.menu_main_high_score => {
+      startActivity(new Intent(LandingActivity.this, classOf[HighScoreActivity]))
+      true
+    }
     case R.id.menu_main_instructions => {
       startActivity(new Intent(LandingActivity.this, classOf[InstructionsActivity]))
       true

@@ -1,42 +1,45 @@
 package com.pt21.afb
 
-import android.app.Activity
+import android.content.Context
 import android.os.Bundle
-import android.view._
+import android.view.{ViewGroup, View}
 import android.widget.AdapterView
 import com.google.android.glass.app.Card
 import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
 
 /**
- * Created by prt2121 on 9/3/14.
+ * Created by prt2121 on 9/8/14.
  */
-class InstructionsActivity extends Activity {
+class HighScoreActivity extends BaseGlassActivity {
 
   private var mScrollView: Option[CardScrollView] = None
-  private var mView: List[View] = List[View]()
+  private var mView: Option[View] = None
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
 
-    mView = buildViews
+    val sharedPref = getSharedPreferences("AngryFlappyBird", Context.MODE_PRIVATE)
+    val highScore = sharedPref.getInt("highScore", 0)
 
+    mView = Some(buildViews(highScore))
     mScrollView = Some(new CardScrollView(this))
     mScrollView.map { scrollView =>
       scrollView.setAdapter(new CardScrollAdapter() {
-        override def getCount: Int = 2
+        override def getCount: Int = 1
 
         override def getPosition(item: scala.Any): Int =
-          if (mView.contains(item)) mView.indexOf(item)
+          if (mView.exists(_.equals(item))) 0
           else AdapterView.INVALID_POSITION
 
-        override def getView(position: Int, convertView: View, parent: ViewGroup): View = mView(position)
+        override def getView(position: Int, convertView: View, parent: ViewGroup): View = mView.get
 
-        override def getItem(position: Int): AnyRef = mView(position)
+        override def getItem(position: Int): AnyRef = mView.get
       })
 
     }
 
     setContentView(mScrollView.get)
+
   }
 
   override def onResume(): Unit = {
@@ -49,19 +52,12 @@ class InstructionsActivity extends Activity {
     mScrollView.map(_.deactivate)
   }
 
-  def buildViews: List[View] = {
-    val views: List[View] = List[View]()
-    val v1 = new Card(this)
+  def buildViews(highScore : Int): View = {
+    new Card(this)
       .setImageLayout(Card.ImageLayout.FULL)
       .addImage(R.drawable.background)
-      .setText("Squat or jump to fly")
+      .setText(highScore.toString)
       .getView
-    val v2 = new Card(this)
-      .setImageLayout(Card.ImageLayout.FULL)
-      .addImage(R.drawable.background)
-      .setText("Tap to poop")
-      .getView
-    v1 :: v2 :: views
   }
 
 }
