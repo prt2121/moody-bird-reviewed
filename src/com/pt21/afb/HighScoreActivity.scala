@@ -4,8 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.{ViewGroup, View}
 import android.widget.AdapterView
-import com.google.android.glass.app.Card
-import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
+import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
 
 /**
  * Created by prt2121 on 9/8/14.
@@ -37,9 +36,7 @@ class HighScoreActivity extends BaseGlassActivity {
       })
 
     }
-
     setContentView(mScrollView.get)
-
   }
 
   override def onResume(): Unit = {
@@ -53,11 +50,11 @@ class HighScoreActivity extends BaseGlassActivity {
   }
 
   def buildViews(highScore : Int): View = {
-    new Card(this)
-      .setImageLayout(Card.ImageLayout.FULL)
+    new CardBuilder(this, CardBuilder.Layout.TEXT)
       .addImage(R.drawable.background)
-      .setText(highScore.toString)
+      .setText("Your highest score is " + highScore.toString + ".")
       .getView
   }
+
 
 }

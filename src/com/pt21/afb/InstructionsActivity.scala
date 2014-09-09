@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view._
 import android.widget.AdapterView
 import com.google.android.glass.app.Card
-import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
+import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
 
 /**
  * Created by prt2121 on 9/3/14.
@@ -51,13 +51,11 @@ class InstructionsActivity extends Activity {
 
   def buildViews: List[View] = {
     val views: List[View] = List[View]()
-    val v1 = new Card(this)
-      .setImageLayout(Card.ImageLayout.FULL)
+    val v1 = new CardBuilder(this, CardBuilder.Layout.TEXT)
       .addImage(R.drawable.background)
       .setText("Squat or jump to fly")
       .getView
-    val v2 = new Card(this)
-      .setImageLayout(Card.ImageLayout.FULL)
+    val v2 = new CardBuilder(this, CardBuilder.Layout.TEXT)
       .addImage(R.drawable.background)
       .setText("Tap to poop")
       .getView

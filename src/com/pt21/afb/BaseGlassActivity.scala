@@ -2,6 +2,7 @@ package com.pt21.afb
 
 import android.app.Activity
 import android.content.Context
+import android.media.AudioManager
 import android.os.Bundle
 import android.view.MotionEvent
 import com.google.android.glass.touchpad.{Gesture, GestureDetector}
@@ -44,5 +45,10 @@ class BaseGlassActivity extends Activity {
   protected def onSwipeLeft(): Boolean = false
 
   protected def onLongPress(): Boolean = false
+
+  def playSound(context:Context, sound: Int): Unit = {
+    val am = context.getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
+    am.playSoundEffect(sound)
+  }
 
 }
