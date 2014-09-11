@@ -88,9 +88,6 @@ class LandingActivity extends BaseGlassActivity {
     case _ => super.onOptionsItemSelected(item)
   }
 
-  override def onGenericMotionEvent(event: MotionEvent): Boolean =
-    mGestureDetector.exists(_.onMotionEvent(event))
-
   def buildView: View = {
     try {
       val cardBuilderName = "com.google.android.glass.widget.CardBuilder"
@@ -114,9 +111,7 @@ class LandingActivity extends BaseGlassActivity {
   }
 
   override def onLongPress(): Boolean = {
-    playSound(this, Sounds.TAP)
-    openOptionsMenu()
-    true
+    onTap
   }
 
 }
