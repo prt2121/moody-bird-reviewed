@@ -14,26 +14,22 @@
  */
 package com.pt21.afb
 
-import android.app.Activity
-import android.content.{Context, Intent}
-import android.media.AudioManager
+import android.content.Intent
 import android.os.Bundle
 import android.view._
 import android.widget.AdapterView
 import com.google.android.glass.app.Card
 import com.google.android.glass.media.Sounds
-import com.google.android.glass.touchpad.{Gesture, GestureDetector}
-import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
+import com.google.android.glass.touchpad.GestureDetector
+import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
 
 /**
  * Created by prt2121 on 8/30/14.
  */
-class LandingActivity extends Activity {
+class LandingActivity extends BaseGlassActivity {
 
   private var mScrollView: Option[CardScrollView] = None
   private var mView: Option[View] = None
-  private var mGestureDetector: Option[GestureDetector] = None
-
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
@@ -55,8 +51,6 @@ class LandingActivity extends Activity {
       })
 
     }
-
-    mGestureDetector = Some(new GestureDetector(this).setBaseListener(new GestureBaseListener));
 
     setContentView(mScrollView.get)
   }
@@ -98,30 +92,29 @@ class LandingActivity extends Activity {
     mGestureDetector.exists(_.onMotionEvent(event))
 
   def buildView: View = {
-    new Card(this)
-      .setImageLayout(Card.ImageLayout.FULL)
-      .addImage(R.drawable.background)
-      .getView
-  }
-
-  class GestureBaseListener extends GestureDetector.BaseListener {
-    override def onGesture(gesture: Gesture): Boolean = {
-      println("onGesture " + gesture.name())
-      gesture match {
-        //TODO: get Gesture.LONG_PRESS when tap
-        case Gesture.TAP | Gesture.LONG_PRESS => onTap()
-        case _ => false
-      }
+    try {
+      val cardBuilderName = "com.google.android.glass.widget.CardBuilder"
+      Class.forName(cardBuilderName)
+      new CardBuilder(this, CardBuilder.Layout.TEXT)
+        .addImage(R.drawable.background)
+        .getView
+    } catch {
+      case e: Exception =>
+        new Card(this)
+          .setImageLayout(Card.ImageLayout.FULL)
+          .addImage(R.drawable.background)
+          .getView
     }
   }
 
-  def playSound(sound: Int): Unit = {
-    val am = getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
-    am.playSoundEffect(sound)
+  override def onTap(): Boolean = {
+    playSound(this, Sounds.TAP)
+    openOptionsMenu()
+    true
   }
 
-  def onTap(): Boolean = {
-    playSound(Sounds.TAP)
+  override def onLongPress(): Boolean = {
+    playSound(this, Sounds.TAP)
     openOptionsMenu()
     true
   }
