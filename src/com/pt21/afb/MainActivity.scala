@@ -74,7 +74,8 @@ class MainActivity extends AndroidApplication {
     //since we have a wake lock,
     //this happens only when the user takes off Glass while the game is running?
     AndroidLinearAcceleration.unregister()
-    //System.exit(0) // TODO find a cleaner way?
+    //finish()
+    System.exit(0) // TODO find a cleaner way?
   }
 
   override def onResume(): Unit = {

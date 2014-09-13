@@ -26,8 +26,6 @@ import com.pt21.afb.{AngryFlappyBird, GameState}
 class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler]) extends Screen {
 
   private var runTime: Float = _
-  //  private var world: GameWorld = _
-  //  private var renderer: GameRenderer = _
 
   override def render(delta: Float): Unit = {
     runTime = runTime + delta
@@ -39,16 +37,14 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
 
   override def resize(width: Int, height: Int): Unit = {}
 
-  override def dispose(): Unit = {}
+  override def dispose(): Unit = {
+    println("dispose")
+    AssetLoader.dispose()
+  }
 
   override def pause(): Unit = {}
 
   override def show(): Unit = {
-    //    println("== show ==")
-    //    world = new GameWorld(game)
-    //    renderer = new GameRenderer(world)
-    //    if(world == null) println("world is null") else println("world is NOT null")
-    //    if(renderer == null) println("renderer is null") else println("renderer is NOT null")
     gesture.map({ controller =>
       controller.onTap(() => {
         game.world.state() match {
@@ -66,12 +62,8 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
         false
       })
       controller.onSwipeDown(() => {
-        println("AssetLoader.dispose")
         AssetLoader.dispose()
         true
-//        game.setScreen(game.menuScreen)
-//        AssetLoader.playFlapSound()
-//        true
       })
     })
     ()

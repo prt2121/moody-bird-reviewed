@@ -20,6 +20,7 @@ import android.os.{Bundle, Handler}
 import android.view._
 import android.widget.RelativeLayout
 import com.prt2121.glass.widget.SliderView
+import com.pt21.afb.helper.AssetLoader
 
 /**
  * Created by prt2121 on 8/30/14.
@@ -57,6 +58,7 @@ class LandingActivity extends SimpleActivity {
 
   override def onPause(): Unit = {
     super.onPause()
+    slider.setVisibility(View.GONE)
     handler.removeCallbacks(startGame)
   }
 

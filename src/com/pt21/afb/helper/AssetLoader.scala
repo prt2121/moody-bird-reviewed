@@ -26,7 +26,6 @@ import com.badlogic.gdx.{Gdx, utils}
  */
 
 object AssetLoader {
-
   val prefs = Gdx.app.getPreferences("AngryFlappyBird")
   if (!prefs.contains("highScore")) prefs.putInteger("highScore", 0)
 

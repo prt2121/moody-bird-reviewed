@@ -39,7 +39,6 @@ class AndroidGestureHandler(activity: Activity) extends GestureHandler {
         case Gesture.SWIPE_LEFT => swipeBackwardAction()
         case Gesture.SWIPE_DOWN => {
           swipeDownAction()
-          //activity.onBackPressed()
           activity.finish()
           return false
         }
