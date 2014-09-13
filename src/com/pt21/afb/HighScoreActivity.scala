@@ -2,11 +2,8 @@ package com.pt21.afb
 
 import android.content.Context
 import android.os.Bundle
-import android.text.{SpannableString, Spannable}
+import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
-import android.view.{MotionEvent, ViewGroup, View}
-import android.widget.AdapterView
-import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
 
 /**
  * Created by prt2121 on 9/8/14.

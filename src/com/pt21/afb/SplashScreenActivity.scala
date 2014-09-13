@@ -1,6 +1,6 @@
 package com.pt21.afb
 
-import android.os.{Handler, Bundle}
+import android.os.{Bundle, Handler}
 import android.view.View
 import com.prt2121.glass.widget.SliderView
 
@@ -11,6 +11,12 @@ class SplashScreenActivity extends SimpleActivity {
 
   lazy val delay = 3 * 1000
   val handler = new Handler()
+  val startGame = new Runnable {
+    override def run(): Unit = {
+      next = classOf[MainActivity]
+      startNextActivity()
+    }
+  }
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
@@ -25,12 +31,5 @@ class SplashScreenActivity extends SimpleActivity {
     super.onTap()
     handler.removeCallbacks(startGame)
     true
-  }
-
-  val startGame = new Runnable {
-    override def run(): Unit = {
-      next = classOf[MainActivity]
-      startNextActivity()
-    }
   }
 }

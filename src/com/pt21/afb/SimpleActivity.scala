@@ -11,8 +11,8 @@ import com.google.android.glass.media.Sounds
  */
 class SimpleActivity extends BaseGlassActivity {
 
-  var next : Class[_ <: Activity] = null
-  var textView : TextView = null
+  var next: Class[_ <: Activity] = null
+  var textView: TextView = null
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class SimpleActivity extends BaseGlassActivity {
     textView = findViewById(R.id.tv_simple).asInstanceOf[TextView]
   }
 
-  def nextActivity(activity: Class[Activity]):Unit =  next = activity
+  def nextActivity(activity: Class[Activity]): Unit = next = activity
 
   override def onLongPress(): Boolean = {
     onTap()
@@ -33,7 +33,7 @@ class SimpleActivity extends BaseGlassActivity {
   }
 
   def startNextActivity(): Unit = {
-    if(next != null) {
+    if (next != null) {
       startActivity(new Intent(this, next).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
       finish()
     }

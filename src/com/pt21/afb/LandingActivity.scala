@@ -16,13 +16,9 @@ package com.pt21.afb
 
 import android.content.Intent
 import android.graphics.Typeface
-import android.os.{Handler, Bundle}
+import android.os.{Bundle, Handler}
 import android.view._
-import android.widget.{RelativeLayout, AdapterView}
-import com.google.android.glass.app.Card
-import com.google.android.glass.media.Sounds
-import com.google.android.glass.touchpad.GestureDetector
-import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
+import android.widget.RelativeLayout
 import com.prt2121.glass.widget.SliderView
 
 /**
@@ -33,6 +29,12 @@ class LandingActivity extends SimpleActivity {
   lazy val delay = 3 * 1000
   lazy val handler = new Handler()
   lazy val slider = findViewById(R.id.slider).asInstanceOf[SliderView]
+  val startGame = new Runnable {
+    override def run(): Unit = {
+      next = classOf[MainActivity]
+      startNextActivity()
+    }
+  }
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
@@ -50,13 +52,6 @@ class LandingActivity extends SimpleActivity {
     handler.removeCallbacks(startGame)
     openOptionsMenu()
     true
-  }
-
-  val startGame = new Runnable {
-    override def run(): Unit = {
-      next = classOf[MainActivity]
-      startNextActivity()
-    }
   }
 
   override def onCreateOptionsMenu(menu: Menu): Boolean = {

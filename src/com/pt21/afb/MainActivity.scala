@@ -59,6 +59,16 @@ class MainActivity extends AndroidApplication {
     tracker.send("Game", "Start", "onCreate", None)
   }
 
+  def createGameView(game: AngryFlappyBird, cfg: AndroidApplicationConfiguration): View = {
+    gameView = initializeForView(game, cfg)
+    val params = new RelativeLayout.LayoutParams(
+      ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //WRAP_CONTENT)
+    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+    params.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
+    gameView.setLayoutParams(params)
+    gameView
+  }
+
   override def onPause(): Unit = {
     super.onPause()
     //since we have a wake lock,
@@ -75,16 +85,6 @@ class MainActivity extends AndroidApplication {
 
   override def onGenericMotionEvent(event: MotionEvent): Boolean = {
     mGestureDetector.exists(_.onMotionEvent(event))
-  }
-
-  def createGameView(game: AngryFlappyBird, cfg: AndroidApplicationConfiguration): View = {
-    gameView = initializeForView(game, cfg)
-    val params = new RelativeLayout.LayoutParams(
-      ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //WRAP_CONTENT)
-    params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
-    params.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE)
-    gameView.setLayoutParams(params)
-    gameView
   }
 
   override def onWindowFocusChanged(hasFocus: Boolean) {

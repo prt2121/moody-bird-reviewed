@@ -4,7 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.view._
 import android.widget.AdapterView
-import com.google.android.glass.app.Card
 import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
 
 /**
@@ -21,7 +20,7 @@ class InstructionsActivity extends Activity {
     mView = buildViews
 
     mScrollView = Some(new CardScrollView(this) {
-      override def dispatchGenericFocusedEvent(event : MotionEvent): Boolean = {
+      override def dispatchGenericFocusedEvent(event: MotionEvent): Boolean = {
         super.dispatchGenericFocusedEvent(event)
         false
       }
@@ -44,16 +43,6 @@ class InstructionsActivity extends Activity {
     setContentView(mScrollView.get)
   }
 
-  override def onResume(): Unit = {
-    super.onResume()
-    mScrollView.map(_.activate)
-  }
-
-  override def onPause(): Unit = {
-    super.onPause()
-    mScrollView.map(_.deactivate)
-  }
-
   def buildViews: List[View] = {
     val views: List[View] = List[View]()
     val v1 = new CardBuilder(this, CardBuilder.Layout.TEXT)
@@ -65,6 +54,16 @@ class InstructionsActivity extends Activity {
       .setText("Tap to poop")
       .getView
     v1 :: v2 :: views
+  }
+
+  override def onResume(): Unit = {
+    super.onResume()
+    mScrollView.map(_.activate)
+  }
+
+  override def onPause(): Unit = {
+    super.onPause()
+    mScrollView.map(_.deactivate)
   }
 
 }
