@@ -15,7 +15,7 @@
 
 package com.pt21.afb.screen
 
-import com.badlogic.gdx.Screen
+import com.badlogic.gdx.{Gdx, Screen}
 import com.pt21.afb.helper.{AssetLoader, GestureHandler}
 import com.pt21.afb.{AngryFlappyBird, GameState}
 
@@ -66,9 +66,12 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
         false
       })
       controller.onSwipeDown(() => {
-        game.setScreen(game.menuScreen)
-        AssetLoader.playFlapSound()
+        println("AssetLoader.dispose")
+        AssetLoader.dispose()
         true
+//        game.setScreen(game.menuScreen)
+//        AssetLoader.playFlapSound()
+//        true
       })
     })
     ()

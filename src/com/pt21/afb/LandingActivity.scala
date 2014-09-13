@@ -31,19 +31,20 @@ class LandingActivity extends SimpleActivity {
   lazy val slider = findViewById(R.id.slider).asInstanceOf[SliderView]
   val startGame = new Runnable {
     override def run(): Unit = {
-      next = classOf[MainActivity]
-      startNextActivity()
+      startActivity(new Intent(LandingActivity.this, classOf[MainActivity]))
     }
   }
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
+    if (savedInstanceState == null) {
+      slider.setVisibility(View.VISIBLE)
+      slider.startProgress(delay)
+      handler.postDelayed(startGame, delay)
+    }
     findViewById(R.id.layout_simple).asInstanceOf[RelativeLayout].setBackground(getResources.getDrawable(R.drawable.background))
     textView.setText("Moody Bird")
-    textView.setTypeface(textView.getTypeface(), Typeface.BOLD)
-    slider.setVisibility(View.VISIBLE)
-    slider.startProgress(delay)
-    handler.postDelayed(startGame, delay)
+    textView.setTypeface(textView.getTypeface, Typeface.BOLD)
   }
 
   override def onTap(): Boolean = {
@@ -52,6 +53,11 @@ class LandingActivity extends SimpleActivity {
     handler.removeCallbacks(startGame)
     openOptionsMenu()
     true
+  }
+
+  override def onPause(): Unit = {
+    super.onPause()
+    handler.removeCallbacks(startGame)
   }
 
   override def onCreateOptionsMenu(menu: Menu): Boolean = {

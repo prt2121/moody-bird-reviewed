@@ -39,8 +39,9 @@ class AngryFlappyBird(val ySensor: LinearAcceleration, val gesture: Option[Gestu
     _creditScreen = new CreditScreen(this, gesture)
     _world = new GameWorld(this)
     _renderer = new GameRenderer(_world)
-    Gdx.input.setCatchBackKey(true)
-    setScreen(new SplashScreen(this, gesture))
+    //Gdx.input.setCatchBackKey(true)
+    //setScreen(new SplashScreen(this, gesture))
+    setScreen(_gameScreen)
     AssetLoader.tracker(tracker)
   }
 

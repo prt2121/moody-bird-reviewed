@@ -37,7 +37,7 @@ class MainActivity extends AndroidApplication {
     //config.useGL20 = true
     val androidGestureHandler =
       if ("Google".equalsIgnoreCase(Build.MANUFACTURER) && Build.MODEL.startsWith("Glass"))
-        Some(new AndroidGestureHandler(getApplicationContext))
+        Some(new AndroidGestureHandler(this))
       else None
 
     mGestureDetector = androidGestureHandler.flatMap(handler => Some(handler.gestureDetector))
@@ -72,9 +72,9 @@ class MainActivity extends AndroidApplication {
   override def onPause(): Unit = {
     super.onPause()
     //since we have a wake lock,
-    //this happens only when the user takes off Glass while the game is running.
+    //this happens only when the user takes off Glass while the game is running?
     AndroidLinearAcceleration.unregister()
-    System.exit(0) // TODO find a cleaner way?
+    //System.exit(0) // TODO find a cleaner way?
   }
 
   override def onResume(): Unit = {

@@ -15,6 +15,7 @@
 
 package com.pt21.afb.helper
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.google.android.glass.touchpad.{Gesture, GestureDetector}
@@ -22,7 +23,7 @@ import com.google.android.glass.touchpad.{Gesture, GestureDetector}
 /**
  * Created by pt2121 on 5/26/14.
  */
-class AndroidGestureHandler(context: Context) extends GestureHandler {
+class AndroidGestureHandler(activity: Activity) extends GestureHandler {
 
   // proguard
   // -keep class com.pt21.afb.helper.** { *; }
@@ -36,14 +37,19 @@ class AndroidGestureHandler(context: Context) extends GestureHandler {
         case Gesture.TWO_TAP => twoFingerTapAction()
         case Gesture.SWIPE_RIGHT => swipeForwardAction()
         case Gesture.SWIPE_LEFT => swipeBackwardAction()
-        case Gesture.SWIPE_DOWN => swipeDownAction()
+        case Gesture.SWIPE_DOWN => {
+          swipeDownAction()
+          //activity.onBackPressed()
+          activity.finish()
+          return false
+        }
         case _ => Log.v("AndroidGestureHandler", "The gesture is not supported.")
       }
       true
     }
   }
 
-  val gestureDetector = new GestureDetector(context)
+  val gestureDetector = new GestureDetector(activity)
   gestureDetector.setBaseListener(new GestureBaseListener)
 
   private var tapAction: () => Boolean = () => false
