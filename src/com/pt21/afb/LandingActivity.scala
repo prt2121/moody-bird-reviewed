@@ -15,54 +15,45 @@
 package com.pt21.afb
 
 import android.content.Intent
-import android.os.Bundle
+import android.os.{Handler, Bundle}
 import android.view._
 import android.widget.AdapterView
 import com.google.android.glass.app.Card
 import com.google.android.glass.media.Sounds
 import com.google.android.glass.touchpad.GestureDetector
 import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
+import com.prt2121.glass.widget.SliderView
 
 /**
  * Created by prt2121 on 8/30/14.
  */
-class LandingActivity extends BaseGlassActivity {
+class LandingActivity extends SimpleActivity {
 
-  private var mScrollView: Option[CardScrollView] = None
-  private var mView: Option[View] = None
+  lazy val delay = 3 * 1000
+  lazy val handler = new Handler()
+  lazy val slider = findViewById(R.id.slider).asInstanceOf[SliderView]
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
+    textView.setText("Moody Bird")
+    slider.setVisibility(View.VISIBLE)
+    slider.startProgress(delay)
+    handler.postDelayed(startGame, delay)
+  }
 
-    mView = Some(buildView)
+  override def onTap(): Boolean = {
+    super.onTap()
+    slider.setVisibility(View.GONE)
+    handler.removeCallbacks(startGame)
+    openOptionsMenu()
+    true
+  }
 
-    mScrollView = Some(new CardScrollView(this))
-    mScrollView.map { scrollView =>
-      scrollView.setAdapter(new CardScrollAdapter() {
-        override def getCount: Int = 1
-
-        override def getPosition(item: scala.Any): Int =
-          if (item == mView) 0
-          else AdapterView.INVALID_POSITION
-
-        override def getView(position: Int, convertView: View, parent: ViewGroup): View = mView.get
-
-        override def getItem(position: Int): AnyRef = mView
-      })
-
+  val startGame = new Runnable {
+    override def run(): Unit = {
+      next = classOf[MainActivity]
+      startNextActivity()
     }
-
-    setContentView(mScrollView.get)
-  }
-
-  override def onResume(): Unit = {
-    super.onResume()
-    mScrollView.map(_.activate)
-  }
-
-  override def onPause(): Unit = {
-    super.onPause()
-    mScrollView.map(_.deactivate)
   }
 
   override def onCreateOptionsMenu(menu: Menu): Boolean = {
@@ -86,32 +77,6 @@ class LandingActivity extends BaseGlassActivity {
     }
     case R.id.menu_main_credit => println("Credit"); true
     case _ => super.onOptionsItemSelected(item)
-  }
-
-  def buildView: View = {
-    try {
-      val cardBuilderName = "com.google.android.glass.widget.CardBuilder"
-      Class.forName(cardBuilderName)
-      new CardBuilder(this, CardBuilder.Layout.TEXT)
-        .addImage(R.drawable.background)
-        .getView
-    } catch {
-      case e: Exception =>
-        new Card(this)
-          .setImageLayout(Card.ImageLayout.FULL)
-          .addImage(R.drawable.background)
-          .getView
-    }
-  }
-
-  override def onTap(): Boolean = {
-    playSound(this, Sounds.TAP)
-    openOptionsMenu()
-    true
-  }
-
-  override def onLongPress(): Boolean = {
-    onTap
   }
 
 }
