@@ -16,7 +16,6 @@
 package com.pt21.afb.helper
 
 import android.app.Activity
-import android.content.Context
 import android.util.Log
 import com.google.android.glass.touchpad.{Gesture, GestureDetector}
 

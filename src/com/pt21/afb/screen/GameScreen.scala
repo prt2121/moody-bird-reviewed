@@ -15,7 +15,7 @@
 
 package com.pt21.afb.screen
 
-import com.badlogic.gdx.{Gdx, Screen}
+import com.badlogic.gdx.Screen
 import com.pt21.afb.helper.{AssetLoader, GestureHandler}
 import com.pt21.afb.{AngryFlappyBird, GameState}
 
