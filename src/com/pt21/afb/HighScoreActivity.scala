@@ -18,6 +18,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
+import com.google.android.glass.media.Sounds
 
 /**
  * Created by prt2121 on 9/8/14.
@@ -35,4 +36,9 @@ class HighScoreActivity extends SimpleActivity {
     textView.setText(text)
   }
 
+  override def onTap(): Boolean = {
+    playSound(this, Sounds.TAP)
+    finish()
+    true
+  }
 }

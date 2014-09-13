@@ -26,7 +26,7 @@ import com.prt2121.glass.widget.SliderView
  */
 class LandingActivity extends SimpleActivity {
 
-  lazy val delay = 3 * 1000
+  lazy val delay = 4 * 1000
   lazy val handler = new Handler()
   lazy val slider = findViewById(R.id.slider).asInstanceOf[SliderView]
   val startGame = new Runnable {
