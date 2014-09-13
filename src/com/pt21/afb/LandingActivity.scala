@@ -18,7 +18,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.{Handler, Bundle}
 import android.view._
-import android.widget.AdapterView
+import android.widget.{RelativeLayout, AdapterView}
 import com.google.android.glass.app.Card
 import com.google.android.glass.media.Sounds
 import com.google.android.glass.touchpad.GestureDetector
@@ -36,6 +36,7 @@ class LandingActivity extends SimpleActivity {
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
+    findViewById(R.id.layout_simple).asInstanceOf[RelativeLayout].setBackground(getResources.getDrawable(R.drawable.background))
     textView.setText("Moody Bird")
     textView.setTypeface(textView.getTypeface(), Typeface.BOLD)
     slider.setVisibility(View.VISIBLE)
