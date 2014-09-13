@@ -15,6 +15,7 @@
 package com.pt21.afb
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.{Handler, Bundle}
 import android.view._
 import android.widget.AdapterView
@@ -36,6 +37,7 @@ class LandingActivity extends SimpleActivity {
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
     textView.setText("Moody Bird")
+    textView.setTypeface(textView.getTypeface(), Typeface.BOLD)
     slider.setVisibility(View.VISIBLE)
     slider.startProgress(delay)
     handler.postDelayed(startGame, delay)
