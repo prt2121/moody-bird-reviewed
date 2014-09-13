@@ -2,6 +2,7 @@ package com.pt21.afb
 
 import android.app.Activity
 import android.content.Context
+import android.media.AudioManager
 import android.os.Bundle
 import android.view.MotionEvent
 import com.google.android.glass.touchpad.{Gesture, GestureDetector}
