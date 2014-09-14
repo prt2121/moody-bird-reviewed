@@ -1,8 +1,5 @@
-moody bird reviewed
+[moody bird reviewed](http://prt2121.github.io/moody-bird/)
 ===================
-
-[moody bird](http://prt2121.github.io/moody-bird/)
-==========
 
 Fixed issues reported by the Glass Review Team!
 
