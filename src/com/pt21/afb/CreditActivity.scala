@@ -16,11 +16,14 @@
 package com.pt21.afb
 
 import android.content.Context
+import android.media.AudioManager
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.view.{LayoutInflater, View, ViewGroup}
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.{AdapterView, TextView}
+import com.google.android.glass.media.Sounds
 import com.google.android.glass.widget.{CardScrollAdapter, CardScrollView}
 
 /**
@@ -47,6 +50,13 @@ class CreditActivity extends BaseGlassActivity {
 
     mScrollView = Some(new CardScrollView(this))
     mScrollView.map { scrollView =>
+      scrollView.setOnItemClickListener(new OnItemClickListener {
+        override def onItemClick(parent: AdapterView[_], view: View, position: Int, id: Long): Unit = {
+          val am = CreditActivity.this.getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
+          am.playSoundEffect(Sounds.DISALLOWED)
+        }
+      })
+
       scrollView.setAdapter(new CardScrollAdapter() {
         override def getCount: Int = credits.length
 
@@ -60,6 +70,7 @@ class CreditActivity extends BaseGlassActivity {
       })
 
     }
+
     setContentView(mScrollView.get)
   }
 
@@ -86,6 +97,4 @@ class CreditActivity extends BaseGlassActivity {
     }
     }
   }
-
-
 }
