@@ -4,7 +4,7 @@
 ### Flappy Bird clone for Glass.
 This app is a result of I fooled around with [GDK](https://developers.google.com/glass/develop/gdk/), [Scala](http://www.scala-lang.org/) and [LibGDX library](http://libgdx.badlogicgames.com/).
 
-Fixed issues reported by the Glass Review Team!
+_Fixed issues reported by the Glass Review Team!_
 
 ### [Get it on GLASS](https://glass.google.com/glassware/10682717974634767504)
 [MyGlass](https://glass.google.com/glassware/10682717974634767504)
