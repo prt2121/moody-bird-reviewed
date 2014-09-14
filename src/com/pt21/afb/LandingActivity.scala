@@ -80,7 +80,7 @@ class LandingActivity extends SimpleActivity {
       startActivity(new Intent(LandingActivity.this, classOf[InstructionsActivity]))
       true
     }
-    case R.id.menu_main_credit => {
+    case R.id.menu_main_credits => {
       startActivity(new Intent(LandingActivity.this, classOf[CreditActivity]))
       true
     }

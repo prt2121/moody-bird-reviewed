@@ -3,14 +3,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_main_new_game"
+        android:icon="@drawable/ic_game"
         android:title="@string/menu_main_new_game"/>
     <item
         android:id="@+id/menu_main_high_score"
+        android:icon="@drawable/ic_high_score"
         android:title="@string/menu_main_high_score"/>
     <item
         android:id="@+id/menu_main_instructions"
+        android:icon="@drawable/ic_instructions"
         android:title="@string/menu_main_instructions"/>
     <item
-        android:id="@+id/menu_main_credit"
+        android:id="@+id/menu_main_credits"
+        android:icon="@drawable/ic_credits"
         android:title="@string/menu_main_credit"/>
 </menu>
