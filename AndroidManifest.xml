@@ -64,6 +64,12 @@
             android:label="@string/app_name"/>
 
         <activity
+            android:name=".CreditActivity"
+            android:parentActivityName=".LandingActivity"
+            android:icon="@drawable/icon"
+            android:label="@string/app_name"/>
+
+        <activity
             android:name=".MainActivity"
             android:parentActivityName=".LandingActivity"
             android:label="@string/app_name"

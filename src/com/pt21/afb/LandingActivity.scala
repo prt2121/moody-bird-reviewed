@@ -62,7 +62,7 @@ class LandingActivity extends SimpleActivity {
   }
 
   override def onCreateOptionsMenu(menu: Menu): Boolean = {
-    getMenuInflater().inflate(R.menu.menu_main, menu)
+    getMenuInflater.inflate(R.menu.menu_main, menu)
     true
   }
 
@@ -80,7 +80,10 @@ class LandingActivity extends SimpleActivity {
       startActivity(new Intent(LandingActivity.this, classOf[InstructionsActivity]))
       true
     }
-    case R.id.menu_main_credit => println("Credit"); true
+    case R.id.menu_main_credit => {
+      startActivity(new Intent(LandingActivity.this, classOf[CreditActivity]))
+      true
+    }
     case _ => super.onOptionsItemSelected(item)
   }
 
