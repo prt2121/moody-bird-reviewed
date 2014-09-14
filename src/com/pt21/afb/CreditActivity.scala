@@ -32,10 +32,11 @@ class CreditActivity extends BaseGlassActivity {
   private var mView: List[View] = List[View]()
 
   val credits = List(
-    new Tuple2("kilobolt", "kilobolt.com/introduction.html"),
     new Tuple2("qubodup", "freesound.org/people/qubodup/sounds/174097"),
     new Tuple2("Adam_N", "freesound.org/people/Adam_N/sounds/164680"),
     new Tuple2("yottasounds", "freesound.org/people/yottasounds/sounds/176731"),
+    new Tuple2("kilobolt", "kilobolt.com"),
+    new Tuple2("Austin Andrews", "modernuiicons.com"),
     new Tuple2("libGDX", "libgdx.badlogicgames.com")
   )
 
