@@ -27,6 +27,7 @@ class HighScoreActivity extends SimpleActivity {
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
+    // TODO organize constant strings
     val sharedPref = getSharedPreferences("AngryFlappyBird", Context.MODE_PRIVATE)
     val highScore = sharedPref.getInt("highScore", 0)
     val prefix = "Your highest score is\n"

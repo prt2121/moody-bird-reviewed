@@ -14,7 +14,7 @@
  */
 package com.pt21.afb
 
-import android.content.Intent
+import android.content.{Context, Intent}
 import android.graphics.Typeface
 import android.os.{Bundle, Handler}
 import android.view._
@@ -31,7 +31,15 @@ class LandingActivity extends SimpleActivity {
   lazy val slider = findViewById(R.id.slider).asInstanceOf[SliderView]
   val startGame = new Runnable {
     override def run(): Unit = {
-      startActivity(new Intent(LandingActivity.this, classOf[MainActivity]))
+      val sharedPref = getSharedPreferences("AngryFlappyBird", Context.MODE_PRIVATE)
+      val firstLaunch = sharedPref.getBoolean("firstLaunch", true)
+      if(firstLaunch) {
+        val intent = new Intent(LandingActivity.this, classOf[InstructionsActivity])
+        intent.putExtra("newGame", true)
+        startActivity(intent)
+      } else {
+        startActivity(new Intent(LandingActivity.this, classOf[MainActivity]))
+      }
     }
   }
 

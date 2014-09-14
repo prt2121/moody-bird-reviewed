@@ -14,6 +14,7 @@
  */
 package com.pt21.afb
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.glass.media.Sounds
 
@@ -32,8 +33,14 @@ class InstructionsActivity extends SimpleActivity {
     val instruction = textView.getText.toString
     if(instruction.equalsIgnoreCase("Squat or jump to fly"))
        textView.setText("Tap to poop")
-    if(instruction.equalsIgnoreCase("Tap to poop"))
+    if(instruction.equalsIgnoreCase("Tap to poop")) {
+      //TODO work?
+      Some(getIntent).map(intent => {
+        if(intent.getBooleanExtra("newGame", false))
+          startActivity(new Intent(InstructionsActivity.this, classOf[MainActivity]))
+      })
       finish()
+    }
     true
   }
 
