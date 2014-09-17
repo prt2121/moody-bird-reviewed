@@ -18,28 +18,26 @@ import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
+import android.view.View
 import com.google.android.glass.media.Sounds
+import com.google.android.glass.widget.CardBuilder
 
 /**
  * Created by prt2121 on 9/8/14.
  */
 class HighScoreActivity extends SimpleActivity {
 
-  override def onCreate(savedInstanceState: Bundle): Unit = {
-    super.onCreate(savedInstanceState)
-    // TODO organize constant strings
+  override def buildView: View = {
     val sharedPref = getSharedPreferences("AngryFlappyBird", Context.MODE_PRIVATE)
     val highScore = sharedPref.getInt("highScore", 0)
-    val prefix = "Your highest score is\n"
-    val text = new SpannableString(prefix + highScore.toString)
-    text.setSpan(new RelativeSizeSpan(0.8f), 0, prefix.length, 33) //33 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-    text.setSpan(new RelativeSizeSpan(2.0f), prefix.length, text.length, 33)
-    textView.setText(text)
+    val builder = new CardBuilder(this, CardBuilder.Layout.TEXT)
+    builder.setText("Your highest score is " + highScore.toString + ".")
+           .addImage(R.drawable.background)
+    new TugView(this, builder.getView)
   }
 
   override def onTap(): Boolean = {
-    playSound(this, Sounds.TAP)
-    finish()
+    playSound(this, Sounds.DISALLOWED)
     true
   }
 }

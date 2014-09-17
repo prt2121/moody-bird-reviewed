@@ -16,7 +16,9 @@ package com.pt21.afb
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.glass.media.Sounds
+import com.google.android.glass.widget.CardBuilder
 
 /**
  * Created by prt2121 on 9/3/14.
@@ -25,22 +27,25 @@ class InstructionsActivity extends SimpleActivity {
 
   override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
-    textView.setText("Squat or jump to fly")
+  }
+
+  override def buildView: View = {
+    val builder = new CardBuilder(this, CardBuilder.Layout.TEXT)
+    builder.setText("Squat or jump to fly\nTap to poop")
+           .addImage(R.drawable.background)
+    new TugView(this, builder.getView)
   }
 
   override def onTap(): Boolean = {
-    playSound(this, Sounds.TAP)
-    val instruction = textView.getText.toString
-    if(instruction.equalsIgnoreCase("Squat or jump to fly"))
-       textView.setText("Tap to poop")
-    if(instruction.equalsIgnoreCase("Tap to poop")) {
-      //TODO work?
-      Some(getIntent).map(intent => {
-        if(intent.getBooleanExtra("newGame", false))
-          startActivity(new Intent(InstructionsActivity.this, classOf[MainActivity]))
-      })
-      finish()
-    }
+    Some(getIntent).map(intent => {
+      if(intent.getBooleanExtra("newGame", false)) {
+        playSound(this, Sounds.TAP)
+        startActivity(new Intent(InstructionsActivity.this, classOf[MainActivity]))
+        finish()
+      } else {
+        playSound(this, Sounds.DISALLOWED)
+      }
+    })
     true
   }
 

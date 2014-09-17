@@ -18,7 +18,8 @@ import android.content.{Context, Intent}
 import android.graphics.Typeface
 import android.os.{Bundle, Handler}
 import android.view._
-import android.widget.RelativeLayout
+import android.widget.{TextView, RelativeLayout}
+import com.google.android.glass.widget.CardBuilder
 import com.prt2121.glass.widget.SliderView
 
 /**
@@ -29,6 +30,8 @@ class LandingActivity extends SimpleActivity {
   lazy val delay = 4 * 1000
   lazy val handler = new Handler()
   lazy val slider = findViewById(R.id.slider).asInstanceOf[SliderView]
+  var textView: TextView = null
+
   val startGame = new Runnable {
     override def run(): Unit = {
       val sharedPref = getSharedPreferences("AngryFlappyBird", Context.MODE_PRIVATE)
@@ -51,8 +54,13 @@ class LandingActivity extends SimpleActivity {
       handler.postDelayed(startGame, delay)
     }
     findViewById(R.id.layout_simple).asInstanceOf[RelativeLayout].setBackground(getResources.getDrawable(R.drawable.background))
+    textView = findViewById(R.id.tv_simple).asInstanceOf[TextView]
     textView.setText("Moody Bird")
     textView.setTypeface(textView.getTypeface, Typeface.BOLD)
+  }
+
+  override def buildView: View = {
+    new TugView(this, R.layout.activity_simple)
   }
 
   override def onTap(): Boolean = {
