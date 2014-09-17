@@ -48,8 +48,14 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
     gesture.map({ controller =>
       controller.onTap(() => {
         game.world.state() match {
-          case GameState.GameOver => game.world.restart()
-          case GameState.HighScore => game.world.restart()
+          case GameState.GameOver => {
+            AssetLoader.playTap()
+            game.world.restart()
+          }
+          case GameState.HighScore => {
+            AssetLoader.playTap()
+            game.world.restart()
+          }
           case GameState.Running => game.world.bird.poop()
           case GameState.Ready =>
         }
@@ -62,6 +68,7 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
         false
       })
       controller.onSwipeDown(() => {
+        AssetLoader.playDismissed()
         AssetLoader.dispose()
         true
       })

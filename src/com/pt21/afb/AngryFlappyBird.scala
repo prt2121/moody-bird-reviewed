@@ -15,11 +15,15 @@
 
 package com.pt21.afb
 
-import com.badlogic.gdx.{Game, Gdx}
+import android.media.AudioManager
+import com.badlogic.gdx.Game
 import com.pt21.afb.helper.{AssetLoader, GestureHandler, LinearAcceleration, Tracker}
 import com.pt21.afb.screen._
 
-class AngryFlappyBird(val ySensor: LinearAcceleration, val gesture: Option[GestureHandler], val tracker: Tracker) extends Game {
+class AngryFlappyBird(val ySensor: LinearAcceleration,
+                      val gesture: Option[GestureHandler],
+                      val tracker: Tracker,
+                      val audioManager: AudioManager) extends Game {
 
   private var _menuScreen: MenuScreen = _
   private var _gameScreen: GameScreen = _
@@ -43,6 +47,7 @@ class AngryFlappyBird(val ySensor: LinearAcceleration, val gesture: Option[Gestu
     //setScreen(new SplashScreen(this, gesture))
     setScreen(_gameScreen)
     AssetLoader.tracker(tracker)
+    AssetLoader.audioManager(audioManager)
   }
 
   override def dispose(): Unit = {

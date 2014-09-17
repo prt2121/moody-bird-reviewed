@@ -15,11 +15,13 @@
 
 package com.pt21.afb.helper
 
+import android.media.AudioManager
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.Texture.TextureFilter
 import com.badlogic.gdx.graphics.g2d.{Animation, BitmapFont, TextureRegion}
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.{Gdx, utils}
+import com.google.android.glass.media.Sounds
 
 /**
  * Created by pt2121 on 5/26/14.
@@ -99,6 +101,7 @@ object AssetLoader {
   private val oinkSound = Gdx.audio.newSound(Gdx.files.internal("sounds/oink.mp3"))
 
   private var mTracker: Tracker = _
+  private var mAudioManager: AudioManager = _
 
   def playDeadSound(): Unit = {
     deadSound.play()
@@ -131,10 +134,16 @@ object AssetLoader {
 
   def tracker(t: Tracker): Unit = mTracker = t
 
+  def audioManager(a: AudioManager): Unit = mAudioManager = a
+
   def report(category: String, action: String, label: String, value: Option[Long]): Unit = {
     if (mTracker != null)
       mTracker.send(category, action, label, value)
   }
+
+  def playTap() : Unit = mAudioManager.playSoundEffect(Sounds.TAP)
+  def playDisallowed() : Unit = mAudioManager.playSoundEffect(Sounds.DISALLOWED)
+  def playDismissed() : Unit = mAudioManager.playSoundEffect(Sounds.DISMISSED)
 
   def dispose(): Unit = {
     texture.dispose()

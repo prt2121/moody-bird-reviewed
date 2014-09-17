@@ -15,6 +15,8 @@
 
 package com.pt21.afb
 
+import android.content.Context
+import android.media.AudioManager
 import android.os.{Build, Bundle}
 import android.view._
 import android.widget.RelativeLayout
@@ -42,7 +44,9 @@ class MainActivity extends AndroidApplication {
 
     mGestureDetector = androidGestureHandler.flatMap(handler => Some(handler.gestureDetector))
     val tracker = AndroidTracker(getApplicationContext)
-    val game = new AngryFlappyBird(AndroidLinearAcceleration(getApplicationContext), androidGestureHandler, tracker)
+    val audio = getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
+
+    val game = new AngryFlappyBird(AndroidLinearAcceleration(getApplicationContext), androidGestureHandler, tracker, audio)
     //initialize(new AngryFlappyBird(AndroidLinearAcceleration(getApplicationContext), androidGestureHandler), config)
 
     requestWindowFeature(Window.FEATURE_NO_TITLE)
