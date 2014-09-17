@@ -18,8 +18,7 @@ import android.content.{Context, Intent}
 import android.graphics.Typeface
 import android.os.{Bundle, Handler}
 import android.view._
-import android.widget.{TextView, RelativeLayout}
-import com.google.android.glass.widget.CardBuilder
+import android.widget.{RelativeLayout, TextView}
 import com.prt2121.glass.widget.SliderView
 
 /**
@@ -36,7 +35,7 @@ class LandingActivity extends SimpleActivity {
     override def run(): Unit = {
       val sharedPref = getSharedPreferences("AngryFlappyBird", Context.MODE_PRIVATE)
       val firstLaunch = sharedPref.getBoolean("firstLaunch", true)
-      if(firstLaunch) {
+      if (firstLaunch) {
         val intent = new Intent(LandingActivity.this, classOf[InstructionsActivity])
         intent.putExtra("newGame", true)
         startActivity(intent)
@@ -85,22 +84,30 @@ class LandingActivity extends SimpleActivity {
   //New game, Instructions, View score, View credits
   override def onOptionsItemSelected(item: MenuItem): Boolean = item.getItemId match {
     case R.id.menu_main_new_game => {
-      startActivity(new Intent(LandingActivity.this, classOf[MainActivity]))
+      startActivity(classOf[MainActivity])
       true
     }
     case R.id.menu_main_high_score => {
-      startActivity(new Intent(LandingActivity.this, classOf[HighScoreActivity]))
+      startActivity(classOf[HighScoreActivity])
       true
     }
     case R.id.menu_main_instructions => {
-      startActivity(new Intent(LandingActivity.this, classOf[InstructionsActivity]))
+      startActivity(classOf[InstructionsActivity])
       true
     }
     case R.id.menu_main_credits => {
-      startActivity(new Intent(LandingActivity.this, classOf[CreditActivity]))
+      startActivity(classOf[CreditActivity])
       true
     }
     case _ => super.onOptionsItemSelected(item)
+  }
+
+  def startActivity[T](c: Class[T]): Unit = {
+    new Handler().post(new Runnable() {
+      override def run(): Unit = {
+        startActivity(new Intent(LandingActivity.this, c))
+      }
+    })
   }
 
 }
