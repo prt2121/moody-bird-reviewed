@@ -109,38 +109,38 @@ class GameRenderer(val world: GameWorld) {
   }
 
   def drawGameOver(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.shadow.draw(spriteBatch, "Game Over", gameOverX, 46)
-    AssetLoader.font.draw(spriteBatch, "Game Over", gameOverX - 1, 45)
+    AssetLoader.shadow.draw(spriteBatch, "Game Over", 164, 76) // gameOverX
+    AssetLoader.font.draw(spriteBatch, "Game Over", 164 - 1, 75) // gameOverX - 1
     ()
   }
 
   def drawHighScore(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.shadow.draw(spriteBatch, "High Score:", highScoreX, 96)
-    AssetLoader.font.draw(spriteBatch, "High Score:", highScoreX - 1, 95)
+    AssetLoader.shadow.draw(spriteBatch, "High Score:", 164, 131)
+    AssetLoader.font.draw(spriteBatch, "High Score:", 164 - 1, 130)
     val highScore = AssetLoader.highScore.toString
-    AssetLoader.shadow.draw(spriteBatch, highScore, estimateX(highScore), 128)
-    AssetLoader.font.draw(spriteBatch, highScore, estimateX(highScore) - 1, 127)
+    AssetLoader.shadow.draw(spriteBatch, highScore, estimateX(highScore), 169)
+    AssetLoader.font.draw(spriteBatch, highScore, estimateX(highScore) - 1, 168)
     ()
   }
 
   def drawNewHighScore(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.shadow.draw(spriteBatch, "High Score!", highScoreX, 56)
-    AssetLoader.font.draw(spriteBatch, "High Score!", highScoreX - 1, 55)
+    AssetLoader.shadow.draw(spriteBatch, "High Score!", 164, 121)
+    AssetLoader.font.draw(spriteBatch, "High Score!", 164 - 1, 120)
     ()
   }
 
   def drawTryAgainAndScore(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.shadow.draw(spriteBatch, "Try again?", estimateX("Try again?"), 76)
-    AssetLoader.font.draw(spriteBatch, "Try again?", estimateX("Try again?") - 1, 75)
+    AssetLoader.shadow.draw(spriteBatch, "Try again?", 174, 201)
+    AssetLoader.font.draw(spriteBatch, "Try again?", 174 - 1, 200)
     val score = world.score.toString
-    AssetLoader.shadow.draw(spriteBatch, score, estimateX(score), 12)
-    AssetLoader.font.draw(spriteBatch, score, estimateX(score) - 1, 11)
+    AssetLoader.shadow.draw(spriteBatch, score, estimateX(score), 42)
+    AssetLoader.font.draw(spriteBatch, score, estimateX(score) - 1, 41)
     ()
   }
 
   def drawTouchMe(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.shadow.draw(spriteBatch, "Up!", upX, 56)
-    AssetLoader.font.draw(spriteBatch, "Up!", upX - 1, 55)
+    AssetLoader.shadow.draw(spriteBatch, "Up!", upX, 66)
+    AssetLoader.font.draw(spriteBatch, "Up!", upX - 1, 65)
     ()
   }
 

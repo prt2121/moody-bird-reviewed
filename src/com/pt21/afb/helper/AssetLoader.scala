@@ -84,10 +84,14 @@ object AssetLoader {
   val poopAnimation = new Animation(0.2f, poops)
   poopAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG)
 
-  val font = new BitmapFont(Gdx.files.internal("fonts/text.fnt"))
-  font.setScale(.25f, -.25f)
-  val shadow = new BitmapFont(Gdx.files.internal("fonts/shadow.fnt"))
-  shadow.setScale(.25f, -.25f)
+//  val font = new BitmapFont(Gdx.files.internal("fonts/text.fnt"))
+  val font = new BitmapFont()
+  font.setColor(0f, 0f, 0, 1)
+  font.setScale(2.5f, -2.5f)
+  //val shadow = new BitmapFont(Gdx.files.internal("fonts/shadow.fnt"))
+  val shadow = new BitmapFont()
+  shadow.setColor(0.5f, 0.4f, 0, 1) // Brown
+  shadow.setScale(2.5f, -2.5f)
 
   val splashTexture = new Texture(Gdx.files.internal(Conf.SPLASH_IMAGE))
   val backgroundTexture = new Texture(Gdx.files.internal(Conf.IMAGE_BACKGROUND))
