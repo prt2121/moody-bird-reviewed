@@ -15,7 +15,7 @@
 
 package com.pt21.afb.screen
 
-import com.badlogic.gdx.Screen
+import com.badlogic.gdx.{Gdx, Screen}
 import com.pt21.afb.helper.{AssetLoader, GestureHandler}
 import com.pt21.afb.{AngryFlappyBird, GameState}
 
@@ -27,10 +27,15 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
 
   private var runTime: Float = _
 
+  private var shouldDispose = false
+
   override def render(delta: Float): Unit = {
     runTime = runTime + delta
     game.world.update(delta)
     game.renderer.render(runTime)
+
+    if(shouldDispose)
+      AssetLoader.dispose()
   }
 
   override def hide(): Unit = {}
@@ -38,8 +43,8 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
   override def resize(width: Int, height: Int): Unit = {}
 
   override def dispose(): Unit = {
-    println("dispose")
-    AssetLoader.dispose()
+    //println("dispose")
+    //AssetLoader.dispose()
   }
 
   override def pause(): Unit = {}
@@ -69,7 +74,9 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
       })
       controller.onSwipeDown(() => {
         AssetLoader.playDismissed()
-        AssetLoader.dispose()
+        shouldDispose = true
+        //AssetLoader.dispose()
+//        Gdx.app.exit()
         true
       })
     })

@@ -16,8 +16,11 @@
 package com.pt21.afb.helper
 
 import android.app.Activity
+import android.content.Intent
+import android.os.Handler
 import android.util.Log
 import com.google.android.glass.touchpad.{Gesture, GestureDetector}
+import com.pt21.afb.LandingActivity
 
 /**
  * Created by pt2121 on 5/26/14.
@@ -37,8 +40,15 @@ class AndroidGestureHandler(activity: Activity) extends GestureHandler {
         case Gesture.SWIPE_RIGHT => swipeForwardAction()
         case Gesture.SWIPE_LEFT => swipeBackwardAction()
         case Gesture.SWIPE_DOWN => {
+//          new Handler().post(new Runnable() {
+//            override def run(): Unit = {
+//              activity.startActivity(new Intent(activity, classOf[LandingActivity]))
+//            }
+//          })
           swipeDownAction()
-          activity.finish()
+
+//          activity.finish()
+
           return false
         }
         case _ => Log.v("AndroidGestureHandler", "The gesture is not supported.")

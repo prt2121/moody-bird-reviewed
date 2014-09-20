@@ -15,9 +15,9 @@
 
 package com.pt21.afb
 
-import android.content.Context
+import android.content.{Intent, Context}
 import android.media.AudioManager
-import android.os.{Build, Bundle}
+import android.os.{Handler, Build, Bundle}
 import android.view._
 import android.widget.RelativeLayout
 import com.badlogic.gdx.backends.android._
@@ -59,7 +59,7 @@ class MainActivity extends AndroidApplication {
     val gameView = createGameView(game, config)
     layout.addView(gameView)
 
-    setContentView(layout)
+    setContentView(new TugView(this, layout))
     tracker.send("Game", "Start", "onCreate", None)
   }
 
@@ -78,8 +78,9 @@ class MainActivity extends AndroidApplication {
     //since we have a wake lock,
     //this happens only when the user takes off Glass while the game is running?
     AndroidLinearAcceleration.unregister()
+
     //finish()
-    System.exit(0) // TODO find a cleaner way?
+    //System.exit(0) // TODO find a cleaner way?
   }
 
   override def onResume(): Unit = {
