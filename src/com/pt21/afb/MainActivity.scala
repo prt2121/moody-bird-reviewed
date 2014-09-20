@@ -15,9 +15,9 @@
 
 package com.pt21.afb
 
-import android.content.{Intent, Context}
+import android.content.Context
 import android.media.AudioManager
-import android.os.{Handler, Build, Bundle}
+import android.os.{Build, Bundle}
 import android.view._
 import android.widget.RelativeLayout
 import com.badlogic.gdx.backends.android._
@@ -47,7 +47,6 @@ class MainActivity extends AndroidApplication {
     val audio = getSystemService(Context.AUDIO_SERVICE).asInstanceOf[AudioManager]
 
     val game = new AngryFlappyBird(AndroidLinearAcceleration(getApplicationContext), androidGestureHandler, tracker, audio)
-    //initialize(new AngryFlappyBird(AndroidLinearAcceleration(getApplicationContext), androidGestureHandler), config)
 
     requestWindowFeature(Window.FEATURE_NO_TITLE)
     getWindow.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -75,12 +74,7 @@ class MainActivity extends AndroidApplication {
 
   override def onPause(): Unit = {
     super.onPause()
-    //since we have a wake lock,
-    //this happens only when the user takes off Glass while the game is running?
     AndroidLinearAcceleration.unregister()
-
-    //finish()
-    //System.exit(0) // TODO find a cleaner way?
   }
 
   override def onResume(): Unit = {

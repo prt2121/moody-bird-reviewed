@@ -15,9 +15,6 @@
 package com.pt21.afb
 
 import android.content.Context
-import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.RelativeSizeSpan
 import android.view.View
 import com.google.android.glass.media.Sounds
 import com.google.android.glass.widget.CardBuilder

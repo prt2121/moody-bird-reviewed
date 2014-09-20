@@ -30,7 +30,6 @@ class GameWorld(val game: AngryFlappyBird) {
 
   import com.pt21.afb.GameState._
 
-  //Gdx.input.setInputProcessor(new WorldInputHandler)
   private var _state: GameState = Ready
   var score = 0
   val bird = new Bird(this)
@@ -97,35 +96,4 @@ class GameWorld(val game: AngryFlappyBird) {
     scrollHandler = new ScrollHandler(this)
     _state = Ready
   }
-
-  /*class WorldInputHandler extends InputProcessor {
-    override def keyDown(p: Int): Boolean = {
-      p match {
-        case Input.Keys.CENTER =>
-          state match {
-            case GameState.GameOver => restart()
-            case GameState.HighScore => restart()
-            case GameState.Running => bird.poop()
-            case GameState.Ready =>
-          }
-          true
-        case Input.Keys.BACK => Gdx.app.exit()
-          true
-        case _ => false
-      }
-    }
-    override def keyTyped(p1: Char): Boolean = false
-
-    override def mouseMoved(p1: Int, p2: Int): Boolean = false
-
-    override def touchDown(p1: Int, p2: Int, p3: Int, p4: Int): Boolean = false
-
-    override def keyUp(p1: Int): Boolean = false
-
-    override def scrolled(p1: Int): Boolean = false
-
-    override def touchUp(p1: Int, p2: Int, p3: Int, p4: Int): Boolean = false
-
-    override def touchDragged(p1: Int, p2: Int, p3: Int): Boolean = false
-  }*/
 }

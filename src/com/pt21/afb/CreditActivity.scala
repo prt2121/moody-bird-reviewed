@@ -20,9 +20,9 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
-import android.view.{LayoutInflater, View, ViewGroup}
+import android.view.{View, ViewGroup}
 import android.widget.AdapterView.OnItemClickListener
-import android.widget.{AdapterView, TextView}
+import android.widget.AdapterView
 import com.google.android.glass.media.Sounds
 import com.google.android.glass.widget.{CardBuilder, CardScrollAdapter, CardScrollView}
 
@@ -85,25 +85,16 @@ class CreditActivity extends BaseGlassActivity {
   }
 
   def buildViews: List[View] = {
-//    val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
-    credits.foldLeft(List[View]()) { (vs, t) => {
-
-      val builder = new CardBuilder(this, CardBuilder.Layout.TEXT)
-      val text = new SpannableString(t._1 + '\n' + t._2)
-      text.setSpan(new RelativeSizeSpan(1.0f), 0, t._1.length, 33)
-      text.setSpan(new RelativeSizeSpan(0.7f), t._1.length, text.length, 33)
-      builder.setText(text)
-             .addImage(R.drawable.background)
-      builder.getView :: vs
-
-//      val relativeLayout = inflater.inflate(R.layout.activity_simple, null)
-//      val textView = relativeLayout.findViewById(R.id.tv_simple).asInstanceOf[TextView]
-//      val text = new SpannableString(t._1 + '\n' + t._2)
-//      text.setSpan(new RelativeSizeSpan(1.0f), 0, t._1.length, 33) //33 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-//      text.setSpan(new RelativeSizeSpan(0.4f), t._1.length, text.length, 33)
-//      textView.setText(text)
-//      relativeLayout :: vs
-    }
+    credits.foldLeft(List[View]()) {
+      (vs, t) => {
+        val builder = new CardBuilder(this, CardBuilder.Layout.TEXT)
+        val text = new SpannableString(t._1 + '\n' + t._2)
+        text.setSpan(new RelativeSizeSpan(1.0f), 0, t._1.length, 33)
+        text.setSpan(new RelativeSizeSpan(0.7f), t._1.length, text.length, 33)
+        builder.setText(text)
+          .addImage(R.drawable.background)
+        builder.getView :: vs
+      }
     }
   }
 }

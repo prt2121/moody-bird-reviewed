@@ -34,8 +34,10 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
     game.world.update(delta)
     game.renderer.render(runTime)
 
-    if(shouldDispose)
+    if(shouldDispose) {
+      // have to call on the right thread
       AssetLoader.dispose()
+    }
   }
 
   override def hide(): Unit = {}
@@ -43,8 +45,6 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
   override def resize(width: Int, height: Int): Unit = {}
 
   override def dispose(): Unit = {
-    //println("dispose")
-    //AssetLoader.dispose()
   }
 
   override def pause(): Unit = {}
@@ -75,8 +75,6 @@ class GameScreen(val game: AngryFlappyBird, val gesture: Option[GestureHandler])
       controller.onSwipeDown(() => {
         AssetLoader.playDismissed()
         shouldDispose = true
-        //AssetLoader.dispose()
-//        Gdx.app.exit()
         true
       })
     })

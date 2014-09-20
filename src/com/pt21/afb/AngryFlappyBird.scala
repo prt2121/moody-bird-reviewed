@@ -25,51 +25,28 @@ class AngryFlappyBird(val ySensor: LinearAcceleration,
                       val tracker: Tracker,
                       val audioManager: AudioManager) extends Game {
 
-//  private var _menuScreen: MenuScreen = _
   private var _gameScreen: GameScreen = _
-//  private var _instructionsScreen1: InstructionsScreen1 = _
-//  private var _instructionsScreen2: InstructionsScreen2 = _
-//  private var _highScoreScreen: HighScoreScreen = _
-//  private var _creditScreen: CreditScreen = _
   private var _world: GameWorld = _
   private var _renderer: GameRenderer = _
 
   override def create(): Unit = {
     _gameScreen = new GameScreen(this, gesture)
-//    _menuScreen = new MenuScreen(this, gesture)
-//    _instructionsScreen1 = new InstructionsScreen1(this, gesture)
-//    _instructionsScreen2 = new InstructionsScreen2(this, gesture)
-//    _highScoreScreen = new HighScoreScreen(this, gesture)
-//    _creditScreen = new CreditScreen(this, gesture)
     _world = new GameWorld(this)
     _renderer = new GameRenderer(_world)
-    //Gdx.input.setCatchBackKey(true)
-    //setScreen(new SplashScreen(this, gesture))
     setScreen(_gameScreen)
 
-    // call only once
+    // have to call if we dispose()
     AssetLoader.init()
+
     AssetLoader.tracker(tracker)
     AssetLoader.audioManager(audioManager)
   }
 
   override def dispose(): Unit = {
     super.dispose()
-    //AssetLoader.dispose()
-    //System.exit(0)
   }
 
   def gameScreen = _gameScreen
-
-//  def menuScreen = _menuScreen
-//
-//  def instructionsScreen1 = _instructionsScreen1
-//
-//  def instructionsScreen2 = _instructionsScreen2
-//
-//  def highScoreScreen = _highScoreScreen
-//
-//  def creditScreen = _creditScreen
 
   def world = _world
 

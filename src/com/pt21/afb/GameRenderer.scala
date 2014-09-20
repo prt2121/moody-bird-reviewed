@@ -41,14 +41,6 @@ class GameRenderer(val world: GameWorld) {
   lazy val highScoreX = estimateX("High Score:")
   lazy val tryAgainX = estimateX("Try again?")
   lazy val upX = estimateX("Up!")
-  //lazy val touchMeX = estimateX("Touch Me!")
-
-  //  def render(runTime: Float): Unit = {
-  //    world.state match {
-  //      case GameState.Running => renderRunning(runTime: Float)
-  //      case _ => renderRunning(runTime: Float) //TODO
-  //    }
-  //  }
 
   def render(runTime: Float): Unit = {
     val pipe1 = world.scrollHandler.pipe1
@@ -105,7 +97,6 @@ class GameRenderer(val world: GameWorld) {
     }
 
     spriteBatch.end()
-    //drawCollisionBound(pipe1, boar, world.poop)
   }
 
   def drawGameOver(spriteBatch: SpriteBatch): Unit = {

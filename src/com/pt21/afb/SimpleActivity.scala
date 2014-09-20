@@ -34,12 +34,6 @@ abstract class SimpleActivity extends BaseGlassActivity {
 
   def buildView: View
 
-  //  def buildView(text : String):View = {
-  //    val builder = new CardBuilder(this, CardBuilder.Layout.TEXT)
-  //    builder.setText(text)
-  //    builder.getView
-  //  }
-
   def nextActivity(activity: Class[Activity]): Unit = next = activity
 
   override def onLongPress(): Boolean = {
