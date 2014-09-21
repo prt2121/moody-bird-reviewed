@@ -17,9 +17,12 @@ package com.pt21.afb.helper
 
 import android.media.AudioManager
 import com.badlogic.gdx.audio.Sound
+import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.Texture.TextureFilter
-import com.badlogic.gdx.graphics.g2d.{Animation, BitmapFont, TextureRegion}
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
+import com.badlogic.gdx.graphics.g2d.{BitmapFont, Animation, TextureRegion}
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.{Gdx, utils}
 import com.google.android.glass.media.Sounds
@@ -55,15 +58,17 @@ object AssetLoader {
   var poops: utils.Array[TextureRegion] = _
   var poopAnimation: Animation = _
   var texture: Texture = _
-  var font: BitmapFont = _
-  var skin: Skin = _
-  var smallSkin: Skin = _
+  //var skin: Skin = _
+  //var smallSkin: Skin = _
   private var deadSound: Sound = _
   private var flapSound: Sound = _
   private var oinkSound: Sound = _
   private var dingSound: Sound = _
   private var mTracker: Tracker = _
   private var mAudioManager: AudioManager = _
+
+//  var fontTexture: Texture = _
+  var font: BitmapFont = _
 
   def init() {
     if (!prefs.contains("highScore")) prefs.putInteger("highScore", 0)
@@ -73,9 +78,14 @@ object AssetLoader {
     flapSound = Gdx.audio.newSound(Gdx.files.internal("sounds/flap.mp3"))
     dingSound = Gdx.audio.newSound(Gdx.files.internal("sounds/coin.wav"))
     oinkSound = Gdx.audio.newSound(Gdx.files.internal("sounds/oink.mp3"))
-    font = new BitmapFont()
-    skin = new Skin(Gdx.files.internal(Conf.SKIN_REGULAR))
-    smallSkin = new Skin(Gdx.files.internal(Conf.SKIN_SMALL))
+
+    // font
+    val generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/robotoRegular.ttf"))
+    val parameter = new FreeTypeFontParameter()
+    parameter.size = 34
+    font = generator.generateFont(parameter)
+    font.setColor(0f, 0f, 0, 1)
+    font.setScale(1.0f, -1.0f)
 
     background = new TextureRegion(texture, 0, 12 + 16, 640, 360)
     pipeHeadBigBottom = new TextureRegion(texture, 0, 0, 64, 16)
@@ -121,8 +131,8 @@ object AssetLoader {
     poop1.flip(false, true)
     poop2.flip(false, true)
     poopAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG)
-    font.setColor(0f, 0f, 0, 1)
-    font.setScale(2.5f, -2.5f)
+
+
   }
 
   def playDeadSound(): Unit = {
@@ -175,8 +185,7 @@ object AssetLoader {
     flapSound.dispose()
     dingSound.dispose()
     oinkSound.dispose()
-    font.dispose()
-    skin.dispose()
-    smallSkin.dispose()
+
+    //font.dispose() somehow it's already disposed
   }
 }

@@ -100,26 +100,26 @@ class GameRenderer(val world: GameWorld) {
   }
 
   def drawGameOver(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.font.draw(spriteBatch, "Game Over", 164 - 1, 75) // gameOverX - 1
+    AssetLoader.font.draw(spriteBatch, "Game Over", 174, 75) // gameOverX - 1
     ()
   }
 
   def drawHighScore(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.font.draw(spriteBatch, "High Score:", 164 - 1, 130)
+    AssetLoader.font.draw(spriteBatch, "High Score:", 174, 130)
     val highScore = AssetLoader.highScore.toString
-    AssetLoader.font.draw(spriteBatch, highScore, estimateX(highScore) - 1, 168)
+    AssetLoader.font.draw(spriteBatch, highScore, estimateX(highScore), 168)
     ()
   }
 
   def drawNewHighScore(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.font.draw(spriteBatch, "High Score!", 164 - 1, 120)
+    AssetLoader.font.draw(spriteBatch, "High Score!", 174, 120)
     ()
   }
 
   def drawTryAgainAndScore(spriteBatch: SpriteBatch): Unit = {
-    AssetLoader.font.draw(spriteBatch, "Try again?", 174 - 1, 200)
+    AssetLoader.font.draw(spriteBatch, "Try again?", 184, 200)
     val score = world.score.toString
-    AssetLoader.font.draw(spriteBatch, score, estimateX(score) - 1, 41)
+    AssetLoader.font.draw(spriteBatch, score, estimateX(score), 41)
     ()
   }
 
